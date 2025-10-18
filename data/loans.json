@@ -1,0 +1,94 @@
+[
+  {
+    "id": 1,
+    "name": "Wedding Loan",
+    "description": "A loan to cover wedding expenses.",
+    "interestRate": 5.5,
+    "duration": "5 years",
+    "img": "../images/wedding.jpg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "Valima"
+      },
+      {
+        "id": 2,
+        "name": "Furniture"
+      },
+      {
+        "id": 3,
+        "name": "Valima Food"
+      },
+      {
+        "id": 4,
+        "name": "Jahez"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Home Construction Loan",
+    "description": "Loan for constructing a new home.",
+    "interestRate": 6.0,
+    "duration": "15 years",
+    "img": "../images/construction.jpg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "Structure"
+      },
+      {
+        "id": 2,
+        "name": "Finishing"
+      },
+      {
+        "id": 3,
+        "name": "Loan"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Education Loan",
+    "description": "Loan to support higher education expenses.",
+    "interestRate": 4.0,
+    "duration": "10 years",
+    "img": "../images/education.jpg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "University Fees"
+      },
+      {
+        "id": 2,
+        "name": "Child Fees Loan"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Business Startup Loan",
+    "description": "Financial support for starting a new business.",
+    "interestRate": 7.5,
+    "duration": "8 years",
+    "img": "../images/business.jpg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "Buy Stall"
+      },
+      {
+        "id": 2,
+        "name": "Advance Rent for Shop"
+      },
+      {
+        "id": 3,
+        "name": "Shop Assets"
+      },
+      {
+        "id": 4,
+        "name": "Shop Machinery"
+      }
+    ]
+  }
+]

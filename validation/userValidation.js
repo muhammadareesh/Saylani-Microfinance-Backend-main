@@ -13,6 +13,19 @@ const userSchema = joi.object({
     "string.empty": `Email is required.`,
     "string.email": `Email must be a valid email address.`,
   }),
+  
+    password: joi.string().min(6).required().messages({
+      "string.empty": `Password is required.`,
+      "string.min": `Password should have a minimum length of {#limit}.`,
+    }),
+      cnic: joi
+    .string()
+    .pattern(/^\d{5}-\d{7}-\d{1}$/)
+    .required()
+    .messages({
+      "string.empty": "CNIC is required.",
+      "string.pattern.base": "CNIC must be in the format xxxxx-xxxxxxx-x",
+    }),
 });
 
 const loginSchema = joi.object({

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
+
 const fs = require("fs");
 const path = require("path");
 
@@ -12,35 +13,28 @@ const generateToken = require("../utils/token");
 
 // Register
 const registerController = async (req, res) => {
-  const { name, email, password } = req.body;
-  const existUser = await User.findOne({ $or: [{ email }] });
+  console.log("ye req hai>>>>",req.body)
+  const { name, cnic, password, email } = req.body;
+  const existUser = await User.findOne({ email, password });
 
   try {
     if (existUser) {
       return res.status(400).json({
-        message: "user already exist, please use different email",
+        message: "user already exist, please use different email or cnic",
       });
     }
 
-    const hashedpassword = await bcrypt.hash(`${password}`, 10);
+    const generatedPassword = new mongoose.Types.ObjectId()
+      .toString()
+      .slice(18);
 
-    const user = new User({ name, email, password: hashedpassword });
+    const hashedpassword = await bcrypt.hash(`${generatedPassword}${cnic}`, 10);
+
+    const user = new User({ name, cnic, email, password: hashedpassword });
 
     // save to mongodb
     await user.save();
-    
-    return res.json({
-      name,
-      email,
-      password,
-      data: "complete",
-    });
 
-
-    // send email
-    return res.status(200).json({
-      message: "User Registered, Please check your email to get password",
-    });
   } catch (error) {
     return res.status(400).json({
       message: error.message,
@@ -54,7 +48,8 @@ const LoginController = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const emailClean = email.trim().toLowerCase();
+    const user = await User.findOne({ email: emailClean  });
 
     if (!user) return res.status(400).json({ message: "invalid Credentials" });
 
@@ -85,22 +80,9 @@ const userController = (req, res) => {
   }
 };
 
-// Loans
-const loanController = (req, res) => {
-  try {
-    const filePath = path.join(__dirname, "../data/loans.json");
-    const data = fs.readFileSync(filePath, "utf8");
-    const loans = JSON.parse(data);
-
-    return res.status(200).json(loans);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
 
 module.exports = {
   registerController,
   LoginController,
   userController,
-  loanController,
 };

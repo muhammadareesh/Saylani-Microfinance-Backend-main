@@ -6,7 +6,6 @@ const {
   registerController,
   LoginController,
   userController,
-  loanController,
 } = require("../controllers/authController");
 
 // Middlewares
@@ -18,7 +17,6 @@ router.post("/register", validationRequest(userSchema), registerController);
 router.post("/login", validationRequest(loginSchema), LoginController);
 router.get("/user", authMiddleware, userController);
 
-router.get("/loans", loanController);
 
 // Testing
 router.get("/testing", (req, res) => {
